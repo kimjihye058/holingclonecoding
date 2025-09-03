@@ -13,9 +13,9 @@ function Section1() {
         <TryButton href="">무료체험 시작하기</TryButton>
       </FirstLeft>
       <FirstRight>
-        <img src="/assets/images/scroll.svg" alt="" />
+        <img src="/assets/images/main/scroll.svg" alt="" />
         <CloudTextWrapper>
-          <img src="/assets/images/tablet.svg" alt="" />
+          <img src="/assets/images/main/tablet.svg" alt="" />
           <span style={{ fontSize: 16, fontFamily: "Maplestory" }}>
             홀링 앱은 <GreenSpan>태블릿, 스마트폰</GreenSpan>에서 <br />
             다운로드 및 이용 가능
@@ -35,7 +35,7 @@ export const First = styled.div`
   justify-content: center;
   width: 100%;
   position: relative;
-  background: url(/assets/images/bg.png);
+  background: url(/assets/images/main/bg.png);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: auto;
@@ -144,7 +144,7 @@ export const CloudTextWrapper = styled.div`
     top: 50%;
     width: 436px;
     height: 114px;
-    background: url("/assets/images/cloud.svg") no-repeat center/contain;
+    background: url("/assets/images/main/cloud.svg") no-repeat center/contain;
     transform: translate(-50%, -50%);
     z-index: -1;
     pointer-events: none;

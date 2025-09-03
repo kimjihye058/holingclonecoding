@@ -6,7 +6,7 @@ function Nav() {
       <WrapperContainer>
         <LogoDiv>
           <a>
-            <ImgLogo src="/assets/images/favicon.svg" alt="logo" />
+            <ImgLogo src="/assets/images/common/favicon.svg" alt="logo" />
           </a>
         </LogoDiv>
         <ButtonDiv>

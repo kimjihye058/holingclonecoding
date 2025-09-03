@@ -4,10 +4,10 @@ function Banner1() {
   return (
     <Banner>
       <BannerImgBox>
-        <img src="/assets/images/banner_invite.png" alt="" />
+        <img src="/assets/images/banner/banner_invite.png" alt="" />
       </BannerImgBox>
       <BannerImgBox>
-        <img src="/assets/images/banner_brand.png" alt="" />
+        <img src="/assets/images/banner/banner_brand.png" alt="" />
       </BannerImgBox>
     </Banner>
   );
