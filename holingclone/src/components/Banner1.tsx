@@ -4,10 +4,31 @@ function Banner1() {
   return (
     <Banner>
       <BannerImgBox>
-        <img src="/assets/images/banner_invite.png" alt="" />
+        <picture>
+          <source
+            media="(max-width: 800px)"
+            srcSet="/assets/images/banner/banner_invite_mobile.png"
+          />
+          <img
+            src="/assets/images/banner/banner_invite.png"
+            alt="invite"
+            loading="lazy"
+          />
+        </picture>
       </BannerImgBox>
+
       <BannerImgBox>
-        <img src="/assets/images/banner_brand.png" alt="" />
+        <picture>
+          <source
+            media="(max-width: 800px)"
+            srcSet="/assets/images/banner/banner_brand_mobile.png"
+          />
+          <img
+            src="/assets/images/banner/banner_brand.png"
+            alt="brand"
+            loading="lazy"
+          />
+        </picture>
       </BannerImgBox>
     </Banner>
   );
@@ -17,9 +38,7 @@ export default Banner1;
 export const Banner = styled.div`
   display: flex;
   flex-direction: row;
-  box-align: center;
   align-items: center;
-  box-pack: center;
   justify-content: center;
   width: 100%;
   background-image: linear-gradient(
@@ -27,6 +46,9 @@ export const Banner = styled.div`
     rgb(65, 129, 248) 50%,
     rgb(34, 201, 247) 50%
   );
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const BannerImgBox = styled.div`
@@ -35,9 +57,14 @@ export const BannerImgBox = styled.div`
   height: 120px;
 
   img {
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    height: 120px;
-    width: auto;
+  }
+
+  @media (max-width: 800px) {
+    height: auto;
   }
 `;
+

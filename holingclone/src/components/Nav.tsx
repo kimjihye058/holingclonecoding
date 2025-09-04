@@ -6,7 +6,7 @@ function Nav() {
       <WrapperContainer>
         <LogoDiv>
           <a>
-            <ImgLogo src="/assets/images/favicon.svg" alt="logo" />
+            <ImgLogo src="/assets/images/common/favicon.svg" alt="logo" />
           </a>
         </LogoDiv>
         <ButtonDiv>
@@ -28,15 +28,14 @@ export default Nav;
 export const NavDiv = styled.nav`
   display: flex;
   background: white;
+  z-index: 100;
   width: 100%;
-  height: 80px;
   border-bottom: 1px solid rgb(230, 231, 234);
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
 `;
 
 export const ImgLogo = styled.img`
@@ -46,7 +45,7 @@ export const ImgLogo = styled.img`
 
 export const ADownload = styled.a`
   display: flex;
-  height: 30px;
+  height: 40px;
   padding: 8px 30px 0px;
   box-pack: center;
   justify-content: center;
@@ -76,13 +75,13 @@ export const ALogin = styled.a`
 
 export const WrapperContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  height: 80px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
+  max-width: 1280px;
 `;
 
 export const LogoDiv = styled.div`

@@ -1,6 +1,22 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 function Section1() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 800);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const buttonElement = <TryButton href="">무료체험 시작하기</TryButton>;
+
   return (
     <First>
       <FirstLeft>
@@ -10,79 +26,113 @@ function Section1() {
           동영상 강의, 문제풀이, 오답학습까지
           <br /> 혼자서도 알차고 탄탄하게 공부해요
         </Desc>
-        <TryButton href="">무료체험 시작하기</TryButton>
+        {!isMobile && buttonElement}
       </FirstLeft>
       <FirstRight>
-        <img src="/assets/images/scroll.svg" alt="" />
+        <ScrollImg
+          src="/assets/images/main/scroll.svg"
+          alt=""
+          height={516}
+          style={{ position: "relative" }}
+        />
         <CloudTextWrapper>
-          <img src="/assets/images/tablet.svg" alt="" />
-          <span style={{ fontSize: 16, fontFamily: "Maplestory" }}>
-            홀링 앱은 <GreenSpan>태블릿, 스마트폰</GreenSpan>에서 <br />
-            다운로드 및 이용 가능
-          </span>
+          <img src="/assets/images/main/tablet.svg" alt="" />
+          <GraySpan>
+            {isMobile ? (
+              <>
+                홀링 앱은 <br />
+                <GreenSpan>태블릿, 스마트폰</GreenSpan> 에서 <br />
+                다운로드 및 이용 가능
+              </>
+            ) : (
+              <>
+                홀링 앱은 <GreenSpan>태블릿, 스마트폰</GreenSpan> 에서 <br />
+                다운로드 및 이용 가능
+              </>
+            )}
+          </GraySpan>
         </CloudTextWrapper>
       </FirstRight>
+      {isMobile && buttonElement}
     </First>
   );
 }
+
 export default Section1;
 
 export const First = styled.div`
   display: flex;
   flex-direction: row;
   gap: 170px;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
   width: 100%;
+  padding: calc(-415px + 50vh) 0px;
   position: relative;
-  background: url(/assets/images/bg.png);
+  background-image: url(/assets/images/main/bg.png);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: auto;
-  padding-top: calc(-415px + 50vh);
-  padding-right: 0px;
-  padding-bottom: calc(-415px + 52vh);
-  padding-left: 0px;
+  @media (max-width: 800px) {
+    background-color: rgb(208, 241, 253);
+    background-image: none;
+    padding: 80px 0px;
+    flex-direction: column;
+    gap: 50px;
+  }
 `;
 
 export const Title = styled.span`
-  color: #000;
+  font-family: SUIT;
   font-size: 30px;
   font-weight: 700;
-  font-family: SUIT, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  display: block;
-
-  @media (max-width: 768px) {
-    font-size: 20px;
+  color: inherit;
+  text-align: inherit;
+  width: unset;
+  white-space: normal;
+  line-height: 1.5;
+  @media (max-width: 800px) {
+    font-size: 22px;
+    text-align: center;
   }
 `;
 
 export const Brand = styled.span`
-  color: #000;
+  font-family: Maplestory;
   font-size: 90px;
   font-weight: 400;
-  font-family: Maplestory, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  display: block;
-  @media (max-width: 768px) {
-    font-size: 32px;
+  color: inherit;
+  text-align: inherit;
+  width: unset;
+  white-space: normal;
+  line-height: inherit;
+  -webkit-text-stroke: 2px black;
+  @media (max-width: 800px) {
+    font-size: 52px;
+    text-align: center;
   }
 `;
 
 export const Desc = styled.span`
   font-size: 24px;
   font-family: SUIT, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 500;
   color: #757e85;
   display: block;
   margin-top: 28px;
-  @media (max-width: 768px) {
-    font-size: 14px;
+  line-height: 1.6;
+  @media (max-width: 800px) {
+    font-size: 18px;
+    text-align: center;
   }
 `;
 
 export const TryButton = styled.a`
   display: flex;
-  width: 200px;
-  height: 50px;
+  width: 320px;
+  height: 88px;
   flex-direction: column;
   box-align: center;
   align-items: center;
@@ -100,10 +150,17 @@ export const TryButton = styled.a`
   line-height: normal;
   letter-spacing: 0.52px;
   margin: 80px 0px 0px;
-  @media (max-width: 768px) {
-    font-size: 16px;
-    padding: 14px 28px;
+  @media (max-width: 800px) {
+    width: 280px;
+    height: 77px;
+    font-size: 22px;
+    padding-top: 18px;
+    margin: 0;
   }
+
+  padding-top: 25px;
+  gap: 8.723px;
+  transition: transform 0.2s ease-in-out;
 `;
 
 export const FirstLeft = styled.div`
@@ -111,6 +168,11 @@ export const FirstLeft = styled.div`
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  @media (max-width: 800px) {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
 `;
 
 export const FirstRight = styled.div`
@@ -120,33 +182,66 @@ export const FirstRight = styled.div`
   align-items: center;
 `;
 
+export const ScrollImg = styled.img`
+  height: 516px;
+  width: auto;
+  position: relative;
+
+  @media (max-width: 800px) {
+    height: 290px;
+    max-width: 100%;
+  }
+`;
+
+export const GraySpan = styled.span`
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgb(74, 78, 83);
+  text-align: center;
+  width: unset;
+  white-space: normal;
+  line-height: inherit;
+  @media (max-width: 800px) {
+    font-size: 14px;
+    text-align: unset;
+  }
+`;
+
 export const GreenSpan = styled.span`
   color: #00ab15;
-  font-weight: 700;
-  font-family: Maplestory, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: inherit;
+  width: unset;
+  white-space: normal;
+  line-height: inherit;
+  @media (max-width: 800px) {
+    font-size: 14px;
+  }
 `;
 
 export const CloudTextWrapper = styled.div`
-  position: relative;
   display: flex;
+  flex-direction: row;
+  gap: 8px;
+  -webkit-box-align: center;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #000;
-  min-width: 260px;
-  min-height: 80px;
-  z-index: 0;
+  background-image: url(/assets/images/main/cloud.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  width: 436px;
+  height: 114px;
+  padding: 35px 28px 35px 49px;
+  @media (max-width: 800px) {
+    width: 320px;
+    height: 83px;
+    padding: 21px 62px 20px;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 436px;
-    height: 114px;
-    background: url("/assets/images/cloud.svg") no-repeat center/contain;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    pointer-events: none;
+    img {
+      width: 47px;
+    }
   }
 `;
